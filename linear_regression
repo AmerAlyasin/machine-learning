@@ -1,0 +1,56 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+df = pd.read_csv("/kaggle/input/linear-reg/linear_regression_dataset.csv")
+
+df
+
+df = pd.read_csv("/kaggle/input/linear-reg/linear_regression_dataset.csv",sep=";")
+df
+
+plt.scatter(df.deneyim,df.maas) 
+plt.xlabel("Deneyim") 
+plt.ylabel("Maas")   
+plt.show()   
+
+x = df.deneyim.values 
+
+x.shape
+
+x = df.deneyim.values.reshape(-1,1)
+y = df.maas.values.reshape(-1,1)
+
+from sklearn.linear_model import LinearRegression
+
+
+linear_reg = LinearRegression() 
+linear_reg.fit(x,y)             
+
+b0 = linear_reg.predict([[0]])
+b0
+
+b0_ = linear_reg.intercept_  
+b0
+
+b1 = linear_reg.coef_ 
+b1
+
+
+new_salary = 1663 + 1138*11
+new_salary
+
+b11 = linear_reg.predict([[11]])
+b11
+
+
+y_head = linear_reg.predict(x)
+
+
+plt.plot(x, y_head, color="red")
+plt.scatter(x,y)
+plt.show()
+
+
+from sklearn.metrics import r2_score
+print("R Square Score: ",r2_score(y,y_head))
